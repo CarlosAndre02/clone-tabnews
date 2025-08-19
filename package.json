@@ -1,0 +1,25 @@
+{
+  "name": "clone-tabnews",
+  "version": "1.0.0",
+  "description": "Clone do https://www.tabnews.com.br desenvolvido no curso.dev",
+  "homepage": "https://github.com/CarlosAndre02/clone-tabnews#readme",
+  "bugs": {
+    "url": "https://github.com/CarlosAndre02/clone-tabnews/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CarlosAndre02/clone-tabnews.git"
+  },
+  "license": "MIT",
+  "author": "Carlos André",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "next": "^15.4.7",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  }
+}
