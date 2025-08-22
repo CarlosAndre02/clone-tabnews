@@ -12,14 +12,20 @@
   },
   "license": "MIT",
   "author": "Carlos André",
-  "type": "commonjs",
-  "main": "index.js",
   "scripts": {
-    "dev": "next dev"
+    "dev": "next dev --turbo",
+    "lint:check": "prettier --check .",
+    "lint:fix": "prettier --write .",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "next": "^15.4.7",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "jest": "^30.0.5",
+    "prettier": "^3.6.2"
   }
 }
