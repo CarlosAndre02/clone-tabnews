@@ -13,27 +13,40 @@ const defaultMigrationOptions = {
 
 export async function GET(request, response) {
   const dbClient = await database.getNewClient();
-  const pendingMigrations = await migrationRunner({
-    ...defaultMigrationOptions,
-    dbClient: dbClient,
-  });
-  await dbClient.end();
-  return NextResponse.json(pendingMigrations, { status: 200 });
+
+  try {
+    const pendingMigrations = await migrationRunner({
+      ...defaultMigrationOptions,
+      dbClient: dbClient,
+    });
+    return NextResponse.json(pendingMigrations, { status: 200 });
+  } catch (e) {
+    console.error(e);
+    throw e;
+  } finally {
+    await dbClient.end();
+  }
 }
 
 export async function POST(request, response) {
   const dbClient = await database.getNewClient();
-  const migratedMigrations = await migrationRunner({
-    ...defaultMigrationOptions,
-    dbClient: dbClient,
-    dryRun: false,
-  });
 
-  await dbClient.end();
+  try {
+    const migratedMigrations = await migrationRunner({
+      ...defaultMigrationOptions,
+      dbClient: dbClient,
+      dryRun: false,
+    });
 
-  if (migratedMigrations.length > 0) {
-    return NextResponse.json(migratedMigrations, { status: 201 });
+    if (migratedMigrations.length > 0) {
+      return NextResponse.json(migratedMigrations, { status: 201 });
+    }
+
+    return NextResponse.json(migratedMigrations, { status: 200 });
+  } catch (e) {
+    console.error(e);
+    throw e;
+  } finally {
+    await dbClient.end();
   }
-
-  return NextResponse.json(migratedMigrations, { status: 200 });
 }
