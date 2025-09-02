@@ -11,7 +11,7 @@ const defaultMigrationOptions = {
   migrationsTable: "pgmigrations",
 };
 
-export async function GET(request, response) {
+export async function GET() {
   const dbClient = await database.getNewClient();
 
   try {
@@ -28,7 +28,7 @@ export async function GET(request, response) {
   }
 }
 
-export async function POST(request, response) {
+export async function POST() {
   const dbClient = await database.getNewClient();
 
   try {
